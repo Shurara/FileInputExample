@@ -51,14 +51,28 @@ public class FindMaxNumber {
         return map;
     }
 
-
+    public static int getLargestIncrase(LinkedHashMap<Integer, String> map ){
+        int maximum = 0;
+        List<Integer> keys = new ArrayList<>();
+        for(Integer key: map.keySet()){
+            keys.add(key);
+        }
+        for(int i = keys.get(0); i < keys.size(); i++){
+            System.out.println(map.get(i));
+            int increase = Integer.parseInt(map.get(i))- Integer.parseInt(map.get(i-1));
+            if(increase > maximum){
+                maximum = increase;
+            }
+        }
+        return maximum;
+    }
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91007.txt");
+      /*  File file = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91007.txt");
         File file2 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91022.txt");
         File file3 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91065.txt");
-        File file4 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91033.txt");
+        File file4 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91033.txt");*/
         File file5 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91069.txt");
-        int max = Arrays.stream(readFileToArray(file))
+     /*   int max = Arrays.stream(readFileToArray(file))
                 .max()
                 .getAsInt();
         long count = Arrays.stream(readFileToArray(file2))
@@ -75,8 +89,10 @@ public class FindMaxNumber {
         System.out.println(count);
         System.out.println(countOfEven);
         System.out.println(summ);
-
+*/
         readInMapFromTwoColumn(file5);
+
+        getLargestIncrase(readInMapFromTwoColumn(file5));
 
     }
 }
