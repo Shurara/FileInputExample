@@ -69,30 +69,24 @@ public class FindMaxNumber {
         File file3 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91065.txt");
         File file4 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91033.txt");
         File file5 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91069.txt");*/
-
         File file = new File("./data", "dataset_91007.txt");
-        File file2 = new File("./data","dataset_91022.txt");
-        File file3 = new File("./data","dataset_91065.txt");
-        File file4 = new File("./data","dataset_91033.txt");
-        File file5 = new File("./data","dataset_91069.txt");
-
+        File file2 = new File("./data", "dataset_91022.txt");
+        File file3 = new File("./data", "dataset_91065.txt");
+        File file4 = new File("./data", "dataset_91033.txt");
+        File file5 = new File("./data", "dataset_91069.txt");
         int max = Arrays.stream(readFileToArray(file))
                 .max()
                 .getAsInt();
         long count = Arrays.stream(readFileToArray(file2))
                 .filter(value -> value >= 9999)
                 .count();
-
         long countOfEven = countOfEven(readFileToArray(file3));
-
-        long summ = Arrays.stream(readFileToArray(file4))
+        long sum = Arrays.stream(readFileToArray(file4))
                 .sum();
-
-
         System.out.println(max);
         System.out.println(count);
         System.out.println(countOfEven);
-        System.out.println(summ);
+        System.out.println(sum);
         readInMapFromTwoColumn(file5);
         getYearOfLargestIncrase(readInMapFromTwoColumn(file5));
 
