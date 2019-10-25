@@ -11,12 +11,10 @@ public class FindMaxNumber {
             int i = 0;
             while (s.hasNextInt()) {
                 result[i++] = s.nextInt();
-
             }
         } catch (FileNotFoundException e) {
         }
         return result;
-
     }
 
     private static int countOfEven(int[] arr) {
@@ -27,52 +25,58 @@ public class FindMaxNumber {
             }
             if (arr[i] % 2 == 0) {
                 count++;
-
             }
-
         }
         return count;
     }
 
     private static LinkedHashMap<Integer, String> readInMapFromTwoColumn(File file) {
-
         LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
         try {
             Scanner s = new Scanner(file);
             while (s.hasNext()) {
-
                 map.put(s.nextInt(), s.next().replace(",", ""));
             }
             s.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(map);
         return map;
     }
 
-    public static int getLargestIncrase(LinkedHashMap<Integer, String> map ){
-        int maximum = 0;
+    public static long getYearOfLargestIncrase(LinkedHashMap<Integer, String> map) {
+        long maximum = 0;
+        int year = 1900;
         List<Integer> keys = new ArrayList<>();
-        for(Integer key: map.keySet()){
+        for (Integer key : map.keySet()) {
             keys.add(key);
         }
-        for(int i = keys.get(0); i < keys.size(); i++){
-            System.out.println(map.get(i));
-            int increase = Integer.parseInt(map.get(i))- Integer.parseInt(map.get(i-1));
-            if(increase > maximum){
+        for (int i = 1; i < keys.size(); i++) {
+            long increase = Long.parseLong(map.get(keys.get(i))) - Long.parseLong(map.get(keys.get(i - 1)));
+            System.out.println(keys.get(i) + "---" + increase);
+            if (increase > maximum) {
                 maximum = increase;
+                year = keys.get(i);
             }
         }
-        return maximum;
+        System.out.println(year + " " + maximum);
+        return year;
     }
+
     public static void main(String[] args) {
-      /*  File file = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91007.txt");
+       /* File file = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91007.txt");
         File file2 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91022.txt");
         File file3 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91065.txt");
-        File file4 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91033.txt");*/
-        File file5 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91069.txt");
-     /*   int max = Arrays.stream(readFileToArray(file))
+        File file4 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91033.txt");
+        File file5 = new File("C:\\Users\\Саша\\IdeaProjects\\HelloWorld\\dataset_91069.txt");*/
+
+        File file = new File("./data", "dataset_91007.txt");
+        File file2 = new File("./data","dataset_91022.txt");
+        File file3 = new File("./data","dataset_91065.txt");
+        File file4 = new File("./data","dataset_91033.txt");
+        File file5 = new File("./data","dataset_91069.txt");
+
+        int max = Arrays.stream(readFileToArray(file))
                 .max()
                 .getAsInt();
         long count = Arrays.stream(readFileToArray(file2))
@@ -89,10 +93,8 @@ public class FindMaxNumber {
         System.out.println(count);
         System.out.println(countOfEven);
         System.out.println(summ);
-*/
         readInMapFromTwoColumn(file5);
-
-        getLargestIncrase(readInMapFromTwoColumn(file5));
+        getYearOfLargestIncrase(readInMapFromTwoColumn(file5));
 
     }
 }
